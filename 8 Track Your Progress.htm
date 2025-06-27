@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Progress - Ankle Foot Exerciser®</title>
+    <style>
+        /* Styles spécifiques pour Elementor - Force les styles même dans Elementor */
+        body h1,
+        .elementor h1,
+        .elementor-widget h1,
+        .elementor-element h1 {
+            font-size: 48px !important;
+            color: #2c3e50 !important;
+            text-align: center !important;
+            margin-bottom: 30px !important;
+            line-height: 1.3 !important;
+            text-transform: uppercase !important;
+            font-weight: bold !important;
+        }
+
+        h1 {
+            font-size: 48px !important;
+            color: #2c3e50 !important;
+            text-align: center !important;
+            margin-bottom: 30px !important;
+            line-height: 1.3 !important;
+            text-transform: uppercase !important;
+            font-weight: bold !important;
+        }
+
+        /* Styles pour H2 harmonisés avec ligne bleue */
+        body h2,
+        .elementor h2,
+        .elementor-widget h2,
+        .elementor-element h2 {
+            font-size: 22px !important;
+            letter-spacing: 1px !important;
+            color: #3498db !important;
+            margin: 30px 0 20px 0 !important;
+            font-weight: bold !important;
+            padding-bottom: 10px !important;
+            border-bottom: 2px solid #3498db !important;
+        }
+
+        h2 {
+            font-size: 22px !important;
+            letter-spacing: 1px !important;
+            color: #3498db !important;
+            margin: 30px 0 20px 0 !important;
+            font-weight: bold !important;
+            padding-bottom: 10px !important;
+            border-bottom: 2px solid #3498db !important;
+        }
+
+        /* Styles pour H3 harmonisés */
+        body h3,
+        .elementor h3,
+        .elementor-widget h3,
+        .elementor-element h3 {
+            font-size: 22px !important;
+            color: #2c3e50 !important;
+            margin: 20px 0 15px 0 !important;
+            font-weight: bold !important;
+        }
+
+        h3 {
+            font-size: 22px !important;
+            color: #2c3e50 !important;
+            margin: 20px 0 15px 0 !important;
+            font-weight: bold !important;
+        }
+
+        /* Responsive pour mobile */
+        @media (max-width: 768px) {
+            body h1,
+            .elementor h1,
+            .elementor-widget h1,
+            .elementor-element h1,
+            h1 {
+                font-size: 30px !important;
+            }
+            
+            .intro-section h1 {
+                font-size: 30px !important;
+            }
+            
+            .intro-section p {
+                font-size: 16px;
+            }
+        }
+
+        /* Taille de police augmentée pour desktop et tablette */
+        @media (min-width: 769px) {
+            body {
+                font-size: 18px !important;
+            }
+            p {
+                font-size: 18px !important;
+            }
+            li {
+                font-size: 18px !important;
+            }
+            label {
+                font-size: 16px !important;
+            }
+            input, textarea, select {
+                font-size: 18px !important;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .intro-section h1 {
+            color: white !important;
+            border-bottom: none !important;
+            font-size: 48px !important;
+            margin-bottom: 20px !important;
+            text-transform: uppercase !important;
+        }
+
+        .intro-section p {
+            font-size: 20px;
+            margin: 15px 0;
+            color: white;
+        }
+
+        .tools-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .tool-card {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            text-align: center;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 15px 10px;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #2980b9, #1f5f8b);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .timeline-section {
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 15px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .timeline-week {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 20px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .timeline-content h4 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+        }
+
+        .conditions-section {
+            margin: 30px 0;
+        }
+
+        .condition-selector {
+            margin: 20px 0;
+        }
+
+        .condition-selector select {
+            padding: 12px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .condition-content {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .metric-card h5 {
+            color: #3498db;
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+
+        .faq-section {
+            margin: 30px 0;
+        }
+
+        .faq-item {
+            background-color: #f8f9fa;
+            margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .success-stories {
+            margin: 30px 0;
+        }
+
+        .story-card {
+            background-color: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            color: white !important;
+            border-bottom: none !important;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background-color: white;
+            color: #2c3e50;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            border: 2px solid white;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: white;
+        }
+
+        .image-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .tools-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-week {
+                margin: 0 auto 15px auto;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="intro-section">
+            <h1>TRACK YOUR PROGRESS</h1>
+            <p>Measure your improvement, stay motivated, and achieve your rehabilitation goals</p>
+        </div>
+
+        <div class="section">
+            <h2>Your Rehabilitation Journey Starts Here</h2>
+            <p>Tracking your progress is a crucial component of 
+successful ankle rehabilitation. According to research, patients who 
+monitor their improvement are 87% more likely to complete their full 
+rehabilitation program and achieve better long-term outcomes.</p>
+            <p><strong>Remember:</strong> In the Ankle Foot Exerciser® 
+program, consistency is key. Just 3 minutes daily for each exercise can 
+make a remarkable difference in your recovery speed and quality.</p>
+            <p>Use this page to track your journey, celebrate small victories, and stay motivated to achieve full recovery.</p>
+            <p><strong>Pro Tip:</strong> Take weekly photos of your 
+ankle from multiple angles to visually track the reduction in swelling 
+and improved alignment. Many users find visual progress highly 
+motivating!</p>
+        </div>
+
+        <div class="section">
+            <h2>Understanding Your Progress Metrics</h2>
+            <p>The Ankle Foot Exerciser® rehabilitation process can be tracked using several key metrics:</p>
+            
+            <h3>1. Exercise Mastery</h3>
+            <p>An exercise is considered "mastered" when you can 
+maintain both squares in the horizontal level (sides not touching the 
+floor) for at least 15 seconds, and you can perform the exercise 3 times
+ in a row on each foot.</p>
+            
+            <h3>2. Range of Motion</h3>
+            <p>Tracking your ankle's range of motion in all directions 
+(dorsiflexion, plantarflexion, inversion, and eversion) will show you 
+meaningful improvements in mobility.</p>
+            
+            <h3>3. Balance Duration</h3>
+            <p>The length of time you can maintain balance on the Ankle 
+Foot Exerciser® is a direct indicator of improved proprioception and 
+stability.</p>
+            
+            <h3>4. Pain Levels</h3>
+            <p>Recording your pain levels (0-10 scale) before and after 
+exercises helps track your healing progress and identify which movements
+ need more attention.</p>
+            
+            <h3>5. Functional Milestones</h3>
+            <p>Note when you reach important functional goals like 
+walking without pain, climbing stairs comfortably, or returning to 
+sports activities.</p>
+            
+            <h3>6. Advanced Performance</h3>
+            <p>For athletes and active individuals, track specific performance metrics relevant to your sport or activities.</p>
+        </div>
+
+        <div class="section">
+            <h2>Progress Tracking Tools</h2>
+            <p>We've created several tools to help you track your 
+rehabilitation journey with the Ankle Foot Exerciser®. Choose the one 
+that works best for you or use a combination for comprehensive tracking.</p>
+            
+            <h3>Downloadable Progress Tracker</h3>
+            <p>Our printable progress tracker allows you to record your daily exercises, pain levels, and achievements.</p>
+            
+            <p>Track which of the 25 exercises you've mastered with our 
+simple checklist based on the program in your Ankle Foot Exerciser® 
+book.</p>
+            
+            <div class="image-section">
+                <img src="8%20Track%20Your%20Progress_fichiers/Minfulness-exercising.jpg" alt="Mindfulness exercising">
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://celaforme.com/ankle-foot-exerciser-progress-tracker.html" target="_blank" class="download-btn">Download Progress Tracker</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Rehabilitation Timeline</h2>
+            <p>Every rehabilitation journey is unique, but this general 
+timeline will help you set realistic expectations and track your 
+progress:</p>
+            
+            <div class="timeline-section">
+                <div class="timeline-item">
+                    <div class="timeline-week">Weeks 1-2</div>
+                    <div class="timeline-content">
+                        <h4>Foundation Phase</h4>
+                        <p><strong>Focus:</strong> Improving basic balance, reducing pain and swelling</p>
+                        <p><strong>Goals:</strong> Master exercises 1-4, achieve 10-second balance</p>
+                        <p><strong>Expected Progress:</strong> Reduction in pain, improved confidence in movements</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-week">Weeks 3-4</div>
+                    <div class="timeline-content">
+                        <h4>Stability Building Phase</h4>
+                        <p><strong>Focus:</strong> Developing hindfoot and forefoot stability</p>
+                        <p><strong>Goals:</strong> Master exercises 5-12, achieve 15-second balance</p>
+                        <p><strong>Expected Progress:</strong> Reduction in instability, improved walking comfort</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-week">Weeks 5-6</div>
+                    <div class="timeline-content">
+                        <h4>Strengthening Phase</h4>
+                        <p><strong>Focus:</strong> Building muscle strength, improving coordination</p>
+                        <p><strong>Goals:</strong> Master exercises 13-19, begin Excellence Circuit</p>
+                        <p><strong>Expected Progress:</strong> Better coordination, ready for more challenging activities</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-week">Weeks 7-8</div>
+                    <div class="timeline-content">
+                        <h4>Advanced Skills Phase</h4>
+                        <p><strong>Focus:</strong> Developing lateral stability, sport-specific movements</p>
+                        <p><strong>Goals:</strong> Master exercises 20-25, perform Excellence Circuit S1-S4</p>
+                        <p><strong>Expected Progress:</strong> Return to most normal activities, improved athletic performance</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 9+</div>
+                    <div class="timeline-content">
+                        <h4>Maintenance &amp; Performance</h4>
+                        <p><strong>Focus:</strong> Maintaining gains, preventing recurrence</p>
+                        <p><strong>Goals:</strong> Regular practice of all exercises, continued improvement</p>
+                        <p><strong>Expected Progress:</strong> Return to full activity with improved stability and performance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tracking Specific Conditions</h2>
+            <div class="conditions-section">
+                <div class="condition-selector">
+                    <label for="condition-select">Select your condition for specialized tracking guidance:</label>
+                    <select id="condition-select" onchange="showConditionContent()">
+                        <option value="" selected="selected">Choose a condition...</option>
+                        <option value="ankle-sprain">Ankle Sprain Recovery</option>
+                        <option value="plantar-fasciitis">Plantar Fasciitis</option>
+                        <option value="achilles">Achilles Tendonitis</option>
+                        <option value="performance">Athletic Performance</option>
+                    </select>
+                </div>
+                
+                <div id="condition-content" class="condition-content" style="display: none;">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Success Stories &amp; Rehabilitation Journeys</h2>
+            <p>Read how others have tracked their progress and achieved remarkable results with the Ankle Foot Exerciser®:</p>
+            
+            <div class="success-stories">
+                <div class="story-card">
+                    <p>"I've found this device to be extremely helpful 
+in strengthening my ankle for improved stability. In the short time I've
+ started using it I feel my ankle strength has improved as well as my 
+balance. The exercises that are suggested are easy to learn, yet may 
+take some time to do accurately until you've learned to balance. It just
+ takes practice and a little getting used to. Love that this ankle foot 
+exerciser comes with an instruction book so that I can customize my 
+routine to my needs."</p>
+                    <p><strong>- Verified Purchase on Amazon (December 12, 2022)</strong></p>
+                </div>
+                
+                <div class="story-card">
+                    <p>"Working on my feet all day in boots left me sore
+ all the time. This simple exercise aid has increased my ankle strength 
+and stability in just a couple months. I don't know how much it's 
+related, but soreness in my knees and hips have decreased as well. My 
+daily workout on the plates strengthened more especially the hindfoot, 
+(my weakest part) and so brought more stability to my whole body."</p>
+                    <p><strong>- Verified Purchase on Amazon (January 19, 2024)</strong></p>
+                </div>
+                
+                <div class="story-card">
+                    <p>"I'm someone who has struggled with ankle and 
+foot issues my whole life and I dance now. Finally something that really
+ can help me strengthen my feet but also help aspects of my feet and 
+ankles become more flexible. The adjustability of this piece of 
+equipment to help you directly target different areas is frankly 
+amazing. Love it!!"</p>
+                    <p><strong>- Verified Purchase on Amazon (December 16, 2024)</strong></p>
+                </div>
+                
+                <div class="story-card">
+                    <p>"This exerciser did a good job of progressively 
+challenging my feet and ankles. I practice yoga regularly and do fairly 
+well at balancing poses, but I was definitely tested beyond my usual 
+capabilities with this exercise kit. I also have experience going 
+through physical therapy for a severely sprained ankle in the past, and I
+ think this product would be comparable to the professional equipment 
+used by my physical therapist at that time. Highly recommend."</p>
+                    <p><strong>- Verified Purchase on Amazon (December 20, 2022)</strong></p>
+                </div>
+                
+                <div class="story-card">
+                    <p>"It's such a simple little thing. By changing the
+ position of the 4 tiles, you strengthen the foot and ankle in 25 ways, 
+progressing in difficulty, isolating one foot at a time. There's no fear
+ of falling since you're only an inch off the floor. So much more 
+precise and safe than the typical wobble board. Makes me look forward to
+ balance training instead of dreading it."</p>
+                    <p><strong>- Verified Purchase on Amazon (August 9, 2023)</strong></p>
+                </div>
+                
+                <div class="story-card">
+                    <p>"After reading Outlive by Peter Attia, I was 
+looking to buy some equipment for stability training. This does it. 
+Peter Attia uses something similar but lot more expensive. This one is 
+not only cheaper but actually has more options that can range from easy 
+to extremely hard. Highly recommended."</p>
+                    <p><strong>- Verified Purchase on Amazon (February 20, 2024)</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">How often should I track my progress?</div>
+                    <div class="faq-answer">
+                        <p>Track your progress daily during exercise 
+sessions. Record pain levels, exercise duration, and any improvements 
+you notice. Weekly measurements of range of motion and monthly photos 
+can help visualize long-term progress.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">What if my progress seems slow?</div>
+                    <div class="faq-answer">
+                        <p>Recovery timelines vary greatly between 
+individuals. Focus on consistency rather than speed. Small improvements 
+in balance time, reduced pain, or increased range of motion are all 
+positive signs. Consult your healthcare provider if you have concerns.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">Should I continue tracking after recovery?</div>
+                    <div class="faq-answer">
+                        <p>Yes! Maintenance tracking helps prevent 
+re-injury and maintains the gains you've achieved. Many users continue 
+with 3x weekly sessions and monthly progress checks.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">Can I share my progress with my healthcare provider?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely! The tracking sheets are designed 
+to be shared with physical therapists, doctors, and other healthcare 
+providers. They provide valuable objective data about your recovery 
+progress.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>READY TO START TRACKING YOUR PROGRESS?</h2>
+            <p>Download our comprehensive progress tracking tools and start your journey to stronger ankles and feet today!</p>
+            
+                        <div class="cta-buttons">
+                <a href="#" class="cta-button">Create Online Account</a>
+                <a href="https://celaforme.com/ankle-foot-exerciser-progress-tracker.html" target="_blank" class="cta-button">Download Progress Tracker</a>
+            </div>          </div>
+            
+            <p style="margin-top: 20px;">Already have the Ankle Foot Exerciser®? Join our community to share your progress and get support</p>
+        </div>
+    
+
+    <script>
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('active');
+        }
+
+        function showConditionContent() {
+            const select = document.getElementById('condition-select');
+            const content = document.getElementById('condition-content');
+            const value = select.value;
+            
+            if (!value) {
+                content.style.display = 'none';
+                return;
+            }
+            
+            content.style.display = 'block';
+            
+            const conditionData = {
+                'ankle-sprain': {
+                    title: 'Ankle Sprain Recovery Tracking',
+                    description: 'Specialized tracking for ankle sprain rehabilitation with focus on stability and strength recovery.',
+                    metrics: [
+                        'Swelling measurements (circumference)',
+                        'Weight-bearing tolerance (%)',
+                        'Pain during movement (0-10 scale)',
+                        'Range of motion recovery',
+                        'Single-leg balance time',
+                        'Ligament stress test comfort',
+                        'Functional mobility distance',
+                        'Proprioceptive accuracy'
+                    ],
+                    timeline: 'Grade 1: 1-2 weeks | Grade 2: 2-4 weeks | Grade 3: 4-8 weeks'
+                },
+                'plantar-fasciitis': {
+                    title: 'Plantar Fasciitis Progress Tracking',
+                    description: 'Monitor heel pain reduction and foot function improvement.',
+                    metrics: [
+                        'Morning pain intensity (0-10)',
+                        'Pain after prolonged sitting',
+                        'Walking distance without pain',
+                        'Heel tenderness on palpation',
+                        'Calf flexibility measurements',
+                        'Arch support tolerance',
+                        'Activity modification needs'
+                    ],
+                    timeline: 'Typical recovery: 6-18 months with consistent treatment'
+                },
+                'achilles': {
+                    title: 'Achilles Tendonitis Recovery',
+                    description: 'Track tendon healing and return to activity progression.',
+                    metrics: [
+                        'Tendon pain and stiffness',
+                        'Morning stiffness duration',
+                        'Calf raise repetitions',
+                        'Tendon thickness (if measured)',
+                        'Walking/running tolerance',
+                        'Heel drop test comfort',
+                        'Activity-specific pain levels',
+                        'Sleep disturbance from pain'
+                    ],
+                    timeline: 'Acute: 2-6 weeks | Chronic: 3-6 months rehabilitation'
+                },
+                'performance': {
+                    title: 'Athletic Performance Enhancement',
+                    description: 'Advanced tracking for athletes seeking peak ankle and foot performance.',
+                    metrics: [
+                        'Single-leg balance duration',
+                        'Dynamic balance scores',
+                        'Proprioceptive accuracy',
+                        'Fatigue resistance',
+                        'Sport-specific metrics',
+                        'Bilateral balance comparison',
+                        'Recovery time between sets',
+                        'Performance under fatigue'
+                    ],
+                    timeline: 'Performance gains typically seen in 4-12 weeks'
+                }
+            };
+            
+            const data = conditionData[value];
+            content.innerHTML = `
+                <h3>${data.title}</h3>
+                <p>${data.description}</p>
+                <h4>Key Metrics to Track:</h4>
+                <div class="metrics-grid">
+                    ${data.metrics.map(metric => `
+                        <div class="metric-card">
+                            <h5>${metric.split(':')[0] || metric}</h5>
+                            <p>${metric.includes(':') ? metric.split(':')[1] : 'Track regularly for progress monitoring'}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                <p><strong>Expected Timeline:</strong> ${data.timeline}</p>
+            `;
+        }
+    </script>
+
+
+
+</body></html>

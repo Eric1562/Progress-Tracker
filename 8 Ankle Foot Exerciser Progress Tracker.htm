@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankle Foot Exerciser® Progress Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background-color: #c82333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .divider {
+            height: 3px;
+            background: linear-gradient(to right, #3498db, #2980b9);
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+
+        .intro-section {
+            background-color: #e8f4fd;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .intro-section h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .personal-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .personal-info h3 {
+            color: #3498db;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .info-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .info-group label {
+            display: block;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .info-group input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .info-group input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .section h3 {
+            color: #3498db;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .exercise-classification {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .exercise-classification-white {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .classification-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+        }
+
+        .green-rectangle {
+            width: 20px;
+            height: 20px;
+            background-color: #28a745;
+            margin-right: 15px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .red-rectangle {
+            width: 20px;
+            height: 20px;
+            background-color: #dc3545;
+            margin-right: 15px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .classification-item p {
+            margin: 0;
+            flex: 1;
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .exercise-grid-4col {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .exercise-grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .exercise-column-left,
+        .exercise-column-right {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .exercise-column {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .exercise-column h4 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .exercise-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .exercise-item:hover {
+            background-color: #e3f2fd;
+        }
+
+        .exercise-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .exercise-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #2980b9, #1f5f8b);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .sheet-description {
+            color: #3498db;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .range-motion-section {
+            background-color: #d4edda;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .tips-section {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .knee-wall-section {
+            background-color: #d4edda;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .knee-wall-section h4 {
+            color: #155724;
+            margin-top: 0;
+        }
+
+        .knee-wall-section ol {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .knee-wall-section li {
+            margin: 8px 0;
+        }
+
+        .normal-range {
+            background-color: #e8f5e8;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #155724;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .info-row {
+                flex-direction: column;
+            }
+            
+            .exercise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .exercise-grid-4col {
+                grid-template-columns: 1fr;
+            }
+            
+            .exercise-grid-2col {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .exercise-grid-4col {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+        }
+
+        /* Styles pour sauvegarder les données */
+        .saved-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="close-btn" onclick="window.close()" title="Close">×</button>
+        
+        <h1>Ankle Foot Exerciser® Progress Tracker</h1>
+        <div class="subtitle">Track your rehabilitation journey, measure improvements, and achieve your goals</div>
+        
+        <div class="divider"></div>
+        
+        <div class="intro-section">
+            <h3>How to use this tracker:</h3>
+            <p>Fill in the tables below to monitor your progress with 
+the Ankle Foot Exerciser®. Record the date, exercises performed, and 
+your performance metrics. Consistent tracking will help you identify 
+improvements and stay motivated throughout your rehabilitation journey.</p>
+            
+            <p><strong>Mastery criteria:</strong> An exercise is 
+considered "mastered" when you can maintain both squares in the 
+horizontal level (sides not touching the floor) for at least 15 seconds,
+ 3 times in a row on each foot.</p>
+            
+            <p><strong>Always exercise both feet equally:</strong> Even 
+if only one ankle is injured, training both sides is essential. This 
+balanced approach provides a direct comparison between your injured and 
+healthy ankle, offering valuable context for recovery progress. It also 
+helps prevent compensatory movement patterns and muscle imbalances that 
+could lead to future issues. Your healthy ankle serves as your personal 
+benchmark for what "normal" looks and feels like for your body.</p>
+        </div>
+
+        <div class="personal-info">
+            <h3>Personal Information</h3>
+            <div class="info-row">
+                <div class="info-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="info-group">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate">
+                </div>
+                <div class="info-group">
+                    <label for="condition">Condition:</label>
+                    <input type="text" id="condition" placeholder="e.g., ankle chronic instability">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Exercise Classification</h3>
+            <div class="exercise-classification-white">
+                <div class="classification-item">
+                    <div class="green-rectangle"></div>
+                    <p><strong>Exercises I master:</strong> Both squares
+ are in the horizontal level (sides not touching the floor) for at least
+ 15 seconds, I made the exercises 3 times in a row on each foot</p>
+                </div>
+                <div class="classification-item">
+                    <div class="red-rectangle"></div>
+                    <p><strong>Exercises I do not master yet:</strong> 
+unstable balance (time &lt; 15'), precise if it is the Left or the Right
+ foot, these weak points will be the exercises to repeat most often</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>How I performed on Therapeutic and Muscle building circuit</h3>
+            <h4>Exercise Mastery Checklist</h4>
+            <p>Check off exercises as you master them (15+ seconds, 3 times consecutively):</p>
+            
+            <div class="exercise-grid-4col">
+                <div class="exercise-column">
+                    <h4>Therapeutic (1-4)</h4>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex1">
+                        <label for="ex1">Exercise 1: Balance arms apart</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex2">
+                        <label for="ex2">Exercise 2: Balance arms crossed</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex3">
+                        <label for="ex3">Exercise 3: Balance eyes closed</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex4">
+                        <label for="ex4">Exercise 4: Arms crossed, eyes closed</label>
+                    </div>
+                </div>
+                
+                <div class="exercise-column">
+                    <h4>Stability (5-12)</h4>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex5">
+                        <label for="ex5">Exercise 5: Hindfoot stability</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex6">
+                        <label for="ex6">Exercise 6: Hindfoot stability</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex7">
+                        <label for="ex7">Exercise 7: Hindfoot stability</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex8">
+                        <label for="ex8">Exercise 8: Hindfoot stability</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex9">
+                        <label for="ex9">Exercise 9: Forefoot strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex10">
+                        <label for="ex10">Exercise 10: Forefoot strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex11">
+                        <label for="ex11">Exercise 11: Forefoot strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex12">
+                        <label for="ex12">Exercise 12: Forefoot strengthening</label>
+                    </div>
+                </div>
+                
+                <div class="exercise-column">
+                    <h4>Strengthening (13-19)</h4>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex13">
+                        <label for="ex13">Exercise 13: Advanced stability</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex14">
+                        <label for="ex14">Exercise 14: Advanced stability</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex15">
+                        <label for="ex15">Exercise 15: Advanced stability</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex16">
+                        <label for="ex16">Exercise 16: Advanced stability</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex17">
+                        <label for="ex17">Exercise 17: Synchronous strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex18">
+                        <label for="ex18">Exercise 18: Synchronous strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex19">
+                        <label for="ex19">Exercise 19: Synchronous strengthening</label>
+                    </div>
+                </div>
+                
+                <div class="exercise-column">
+                    <h4>Lateral (20-25)</h4>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex20">
+                        <label for="ex20">Exercise 20: Lateral strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex21">
+                        <label for="ex21">Exercise 21: Lateral strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex22">
+                        <label for="ex22">Exercise 22: Lateral strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex23">
+                        <label for="ex23">Exercise 23: Lateral strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex24">
+                        <label for="ex24">Exercise 24: Lateral strengthening</label>
+                    </div>
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex25">
+                        <label for="ex25">Exercise 25: Lateral strengthening</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <a href="file:///C:/Users/grlib/Downloads/ankle-foot-exerciser-progress-tracker.xlsx" download="" class="download-btn">Download Progress Tracker Excel/Google Sheet</a>
+            <div class="sheet-description">
+                <strong>Sheet 1</strong> to record your Therapeutic and Muscle building daily exercises and track your progress over time.
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>How I performed on Excellence circuit, Sport performances</h3>
+            <h4>Exercise Mastery Checklist</h4>
+            <p>Excellence Circuit:</p>
+            
+            <div class="exercise-column">
+                <div class="exercise-item">
+                    <input type="checkbox" id="s1">
+                    <label for="s1">S1: Single leg Compass</label>
+                </div>
+                <div class="exercise-item">
+                    <input type="checkbox" id="s2">
+                    <label for="s2">S2: Single leg Reach</label>
+                </div>
+                <div class="exercise-item">
+                    <input type="checkbox" id="s3">
+                    <label for="s3">S3: Tree pose Yoga</label>
+                </div>
+                <div class="exercise-item">
+                    <input type="checkbox" id="s4">
+                    <label for="s4">S4: (Assisted) Pistol squat</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <a href="file:///C:/Users/grlib/Downloads/ankle-foot-exerciser-progress-tracker.xlsx" download="" class="download-btn">Download Progress Tracker Excel/Google Sheet</a>
+            <div class="sheet-description">
+                <strong>Sheet 2</strong> to record your Excellence, Sport performances daily exercises and track your progress over time.
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Range of Motion Tracking</h3>
+            
+            <div class="range-motion-section">
+                <h4>How to Measure Range of Motion:</h4>
+                <p><strong>Dorsiflexion:</strong> Sit with leg extended. Pull foot up toward shin. Normal range: 20°</p>
+                <p><strong>Plantarflexion:</strong> Sit with leg extended. Point toes away from shin. Normal range: 50°</p>
+                <p><strong>Inversion:</strong> Sit with leg extended. Turn sole of foot inward. Normal range: 35°</p>
+                <p><strong>Eversion:</strong> Sit with leg extended. Turn sole of foot outward. Normal range: 25°</p>
+            </div>
+            
+            <div class="tips-section">
+                <p><strong>Tips:</strong> Use a smartphone goniometer app for accurate measurements, or estimate visually comparing to normal range.</p>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <a href="file:///C:/Users/grlib/Downloads/ankle-foot-exerciser-progress-tracker.xlsx" download="" class="download-btn">Download Progress Tracker Excel/Google Sheet</a>
+            <div class="sheet-description">
+                <strong>Sheet 3</strong> to record your full Ankle Range
+ of Motion (Dorsiflexion, Plantarflexion, Inversion, Eversion) and track
+ your progress over time.
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Knee to Wall/Heel Distance Test</h3>
+            
+            <div class="knee-wall-section">
+                <h4>How to Perform the Test:</h4>
+                <ol>
+                    <li>Place your foot perpendicular to a wall (toes pointing at wall)</li>
+                    <li>Keep heel firmly on ground throughout the test</li>
+                    <li>Bend knee forward until it touches the wall</li>
+                    <li>Gradually move foot backward until you can just touch the wall with your knee while keeping heel down</li>
+                    <li>Measure distance from wall to big toe (cm)</li>
+                </ol>
+                
+                <div class="normal-range">
+                    <strong>Normal range:</strong> 10-12 cm for healthy adults. Less than 5 cm indicates significant restriction.
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <a href="file:///C:/Users/grlib/Downloads/ankle-foot-exerciser-progress-tracker.xlsx" download="" class="download-btn">Download Progress Tracker Excel/Google Sheet</a>
+            <div class="sheet-description">
+                <strong>Sheet 4</strong> to record your daily Knee to 
+Wall Test. If you have significant restriction, try to gradually move 
+the foot away from the wall to progressively gain dorsiflexion over 
+time.
+            </div>
+        </div>
+    </div>
+
+    <div class="saved-indicator" id="savedIndicator">
+        ✓ Progress saved automatically
+    </div>
+
+    <script>
+        // Fonction pour sauvegarder automatiquement les données
+        function saveData() {
+            const data = {
+                name: document.getElementById('name').value,
+                startDate: document.getElementById('startDate').value,
+                condition: document.getElementById('condition').value,
+                exercises: {}
+            };
+            
+            // Sauvegarder l'état des checkboxes
+            for (let i = 1; i <= 25; i++) {
+                const checkbox = document.getElementById('ex' + i);
+                if (checkbox) {
+                    data.exercises['ex' + i] = checkbox.checked;
+                }
+            }
+            
+            // Sauvegarder les exercices S1-S4
+            for (let i = 1; i <= 4; i++) {
+                const checkbox = document.getElementById('s' + i);
+                if (checkbox) {
+                    data.exercises['s' + i] = checkbox.checked;
+                }
+            }
+            
+            localStorage.setItem('ankleFootExerciserProgress', JSON.stringify(data));
+            
+            // Afficher l'indicateur de sauvegarde
+            const indicator = document.getElementById('savedIndicator');
+            indicator.style.display = 'block';
+            setTimeout(() => {
+                indicator.style.display = 'none';
+            }, 2000);
+        }
+        
+        // Fonction pour charger les données sauvegardées
+        function loadData() {
+            const savedData = localStorage.getItem('ankleFootExerciserProgress');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                document.getElementById('name').value = data.name || '';
+                document.getElementById('startDate').value = data.startDate || '';
+                document.getElementById('condition').value = data.condition || '';
+                
+                // Charger l'état des checkboxes
+                if (data.exercises) {
+                    Object.keys(data.exercises).forEach(key => {
+                        const checkbox = document.getElementById(key);
+                        if (checkbox) {
+                            checkbox.checked = data.exercises[key];
+                        }
+                    });
+                }
+            }
+        }
+        
+        // Charger les données au chargement de la page
+        window.addEventListener('load', loadData);
+        
+        // Sauvegarder automatiquement quand les données changent
+        document.addEventListener('input', saveData);
+        document.addEventListener('change', saveData);
+    </script>
+
+
+
+</body></html>
